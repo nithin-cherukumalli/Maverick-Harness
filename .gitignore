@@ -17,6 +17,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Node / npm cache
+.npm-cache/
+node_modules/
+
 # Temp
 *.tmp
 maverick-trap-*
