@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "6335488b9b075d69",
+    "type": "split",
+    "children": [
+      {
+        "id": "1017776eb77ce62b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d0ee60af63e5c818",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5dc8dff71ee2e5a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "e0f81e602f71a869",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fe0de7b692b08bb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6d5695712427272d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "da127f86ab15acc4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cc01cb7320f7b1e2",
+    "type": "split",
+    "children": [
+      {
+        "id": "43fc3db7482031fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9a6b3a6fca3745e9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "88770fd35157f34b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "c5109b63729e228d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "31579790a873460b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "59650aad8cc4010f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "d0ee60af63e5c818",
+  "lastOpenFiles": [
+    "comparisons/traditional-testing-vs-independent-verification.md",
+    "comparisons/context-packs-vs-rag.md",
+    "comparisons/maverick-vs-genesis.md",
+    "concepts/control-plane-architecture.md",
+    "concepts/miss-measurement.md",
+    "concepts/stdlib-only-constraint.md",
+    "concepts/genesis-cli-contract.md",
+    "concepts/cognitive-job.md",
+    "concepts/agent-self-certification.md",
+    "concepts/hidden-qa-isolation.md",
+    "concepts/proposal-vs-decision.md",
+    "concepts/risk-based-verification.md",
+    "concepts/evidence-integrity.md",
+    "concepts/mutation-testing.md",
+    "concepts/trap-benchmark.md",
+    "concepts/trust-boundaries.md",
+    "concepts/context-packs.md",
+    "concepts/bounded-repair-loop.md",
+    "concepts/independent-verification.md",
+    "entities/claude-code.md",
+    "entities/coding-agent.md",
+    "entities/genesis-system.md",
+    "entities/maverick-harness.md",
+    "Welcome.md"
+  ]
+}

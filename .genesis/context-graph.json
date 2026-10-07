@@ -1,0 +1,138 @@
+{
+  "project": {
+    "name": "Maverick Harness",
+    "version": "0.0.0",
+    "description": "Control layer around coding agents \u2014 independent verification + automatic context",
+    "repo": "https://github.com/nithin-cherukumalli/Maverick-Harness.git",
+    "genesis_version": "pinned-1.0.0",
+    "installed_into": "~/.claude"
+  },
+  "stack": {
+    "language": "python3",
+    "dependencies": "stdlib-only",
+    "constraint": "No external dependencies without user decision (INV-03)"
+  },
+  "invariants": [
+    {
+      "id": "INV-01",
+      "rule": "No coding agent certifies its own work. Only verifier VERIFIED (exit 0) counts.",
+      "checked_by": "verifier/verify.py exit code"
+    },
+    {
+      "id": "INV-02",
+      "rule": "Hidden QA tests are outside the agent's reach (not in agent-editable directories).",
+      "checked_by": "P5 isolation test"
+    },
+    {
+      "id": "INV-03",
+      "rule": "Standard library only. No external dependencies without user decision.",
+      "checked_by": "import scan in verify.py"
+    },
+    {
+      "id": "INV-04",
+      "rule": "One function before a class. No premature abstraction.",
+      "checked_by": "code review (L3)"
+    },
+    {
+      "id": "INV-05",
+      "rule": "No config without a user. Agent ideas are 'proposal'. Only the human makes a 'decision'.",
+      "checked_by": "write-back hook (P4)"
+    },
+    {
+      "id": "INV-06",
+      "rule": "No SQLite, graph, embeddings, or memory DB until a measured miss justifies it.",
+      "checked_by": "miss log (P8), threshold 20%"
+    },
+    {
+      "id": "INV-07",
+      "rule": "Any number in a doc must come from a command. Otherwise write 'unknown'.",
+      "checked_by": "L3 review"
+    },
+    {
+      "id": "INV-08",
+      "rule": "Genesis stays unmodified. Talk to it only through its CLI. Pin its version.",
+      "checked_by": "git diff on .genesis/ (read-only)"
+    },
+    {
+      "id": "INV-09",
+      "rule": "Bounded repair \u2014 max 3 attempts, then BLOCKED \u2192 HUMAN.",
+      "checked_by": "repair counter in verify.py"
+    },
+    {
+      "id": "INV-10",
+      "rule": "Every context pack line shows its source ID.",
+      "checked_by": "context pack linter (P3)"
+    }
+  ],
+  "file_map": {
+    "planned_structure": {
+      ".genesis/": "project state spine (read-only per INV-08)",
+      "verifier/verify.py": "independent verification \u2014 tests, mutation, evidence (exit 0=VERIFIED)",
+      "trap-project/run_traps.py": "8 trap scenarios \u2014 must print ALL TRAPS BEHAVE",
+      "trap-project/": "adversarial test cases (frozen after P0)",
+      "skills/independent-verification/": "agent skill for verification awareness",
+      "hooks/": "end-of-session hooks (write-back, P4)",
+      "install.sh": "installs into ~/.claude",
+      "ROADMAP.md": "implementation roadmap"
+    },
+    "current_files": [
+      ".claude/settings.local.json",
+      ".deepeval/ (empty)",
+      "Maverick Harness Wiki/ (Obsidian vault, P7)"
+    ]
+  },
+  "trap_scenarios": [
+    {
+      "id": "TRAP-001",
+      "name": "Wrong label",
+      "description": "Agent uses 'flaky' not 'IsFlaky'"
+    },
+    {
+      "id": "TRAP-002",
+      "name": "Weak test",
+      "description": "Only happy path tested"
+    },
+    {
+      "id": "TRAP-003",
+      "name": "Stale evidence",
+      "description": "Tests on wrong build"
+    },
+    {
+      "id": "TRAP-004",
+      "name": "Bad split",
+      "description": "Random vs grouped split"
+    },
+    {
+      "id": "TRAP-005",
+      "name": "Data leakage",
+      "description": "Feature computed from label"
+    },
+    {
+      "id": "TRAP-006",
+      "name": "Mutation survives",
+      "description": "Test suite too weak to detect"
+    },
+    {
+      "id": "TRAP-007",
+      "name": "UI regression",
+      "description": "Code works but UX broke"
+    },
+    {
+      "id": "TRAP-008",
+      "name": "API contract violation",
+      "description": "Response shape changed"
+    }
+  ],
+  "trust_boundaries": {
+    "coding_agent": "UNTRUSTED \u2014 cannot certify own work, cannot access hidden QA",
+    "verifier": "TRUSTED \u2014 independent, outside agent reach",
+    "hidden_qa": "OUTSIDE agent reach \u2014 not in agent-editable directories",
+    "genesis": "UNMODIFIED \u2014 CLI only, version pinned",
+    "human": "SOLE DECISION MAKER \u2014 agent ideas are proposals"
+  },
+  "dependencies": {
+    "external": "none (stdlib only per INV-03)",
+    "genesis": "pinned-1.0.0 (talked to via CLI only per INV-08)",
+    "agentic_swe_kit": "wiki at ~/.agentic-swe-kit/wiki/ (concept reference)"
+  }
+}

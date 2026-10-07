@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Maverick Harness — Definition of Done</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 920px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.5; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 8px; }
+  h2 { color: #0066cc; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  h3 { color: #333; margin-top: 24px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 0.92em; }
+  th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: #f4f4f4; font-weight: 600; }
+  .pass { color: #080; font-weight: bold; }
+  .fail { color: #c00; font-weight: bold; }
+  .pending { color: #999; }
+  .locked { background: #fff3cd; padding: 12px 16px; border-left: 4px solid #ffc107; margin: 20px 0; font-weight: 500; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.88em; }
+  .cog-job { background: #e8f4fd; padding: 16px; border-radius: 6px; margin: 12px 0; }
+  ul { padding-left: 20px; }
+  li { margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<h1>Maverick Harness — Definition of Done</h1>
+<div class="locked">⚠️ LOCKED — Do not edit mid-loop. Change scope via the user, not silently.</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>§1 — G0 Cognitive Design</h2>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h3>5-Question Diagnostic</h3>
+<table>
+<tr><th>Q</th><th>Question</th><th>Answer</th></tr>
+<tr><td>Q1</td><td>Scope</td><td>New project. A small control layer around coding agents. Genesis keeps project state. Maverick adds independent verification and automatic context.</td></tr>
+<tr><td>Q2</td><td>AI components</td><td>None inside the harness itself. It supervises coding agents.</td></tr>
+<tr><td>Q3</td><td>Distribution</td><td>Personal tool, one repo, installed into ~/.claude.</td></tr>
+<tr><td>Q4</td><td>Trust boundary</td><td>The coding agent is NOT trusted to say "done" or "tests passed". Hidden QA tests and the verifier sit outside its reach.</td></tr>
+<tr><td>Q5</td><td>Current phase</td><td>P0, starting from a head start (verifier concept exists in vision doc).</td></tr>
+</table>
+
+<p><strong>Route:</strong> New + No AI + Not distributed + Trust boundary → modular-architecture → engineering-mindset → production-readiness → security-engineering (trust/isolation).</p>
+
+<h3>Cognitive Job</h3>
+<div class="cog-job">
+<p><strong>Given</strong> a code change produced by a coding agent, <strong>independently verify</strong> it against hidden tests, adversarial cases, and evidence integrity — producing a binary <strong>VERDICT</strong> (VERIFIED exit 0 / NOT PROVEN exit non-zero). The harness itself performs no LLM reasoning; it is a deterministic control layer.</p>
+</div>
+
+<table>
+<tr><th>Dimension</th><th>Specification</th></tr>
+<tr><td><strong>Inputs</strong></td><td>Code change (git diff/commit), task spec (from Genesis CLI), hidden QA tests (outside agent reach), trap scenarios</td></tr>
+<tr><td><strong>Outputs</strong></td><td>VERDICT (VERIFIED exit 0 / NOT PROVEN exit non-zero), evidence bundle (SHA, env, timestamp, exit code, result)</td></tr>
+<tr><td><strong>Reasoning depth</strong></td><td>Deterministic — test execution, mutation testing, evidence checking. No probabilistic reasoning inside the harness.</td></tr>
+<tr><td><strong>Autonomy level</strong></td><td>Fully autonomous for verification. Human required for decisions, approvals, escalation after 3 failed repairs.</td></tr>
+<tr><td><strong>Human involvement</strong></td><td>Decision-making (proposals vs decisions), approval gates for high-risk changes, escalation after 3 failed repair attempts</td></tr>
+<tr><td><strong>Failure tolerance</strong></td><td>Bounded repair (max 3 attempts, then BLOCKED → HUMAN). Every failure logged.</td></tr>
+<tr><td><strong>Trust boundaries</strong></td><td>Coding agent: UNTRUSTED. Verifier: TRUSTED. Hidden QA: OUTSIDE agent reach. Genesis: UNMODIFIED (CLI only, version pinned).</td></tr>
+</table>
+
+<h3>Failure Modes</h3>
+<table>
+<tr><th>#</th><th>Failure mode</th><th>Mitigation</th></tr>
+<tr><td>1</td><td>Agent self-certifies ("done" without verifier VERIFIED)</td><td>INV-01 — only verifier exit 0 counts</td></tr>
+<tr><td>2</td><td>Agent edits hidden QA tests</td><td>INV-02 + P5 isolation — QA outside agent reach</td></tr>
+<tr><td>3</td><td>Agent makes decision without human</td><td>INV-05 — ideas are "proposal", only human decides</td></tr>
+<tr><td>4</td><td>Agent introduces DB/embeddings without measured miss</td><td>INV-06 — no DB until misses > 20%</td></tr>
+<tr><td>5</td><td>Agent endlessly repairs</td><td>INV-09 — max 3 tries, then BLOCKED → HUMAN</td></tr>
+<tr><td>6</td><td>Verifier passes wrong code</td><td>Trap benchmark (P0) + mutation testing (P6)</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>§2 — Definition of Done (Binary Phase Gates)</h2>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<p>Each gate is binary (PASS/FAIL). The maker does not grade its own work — L4 VERIFY is always a separate context.</p>
+
+<table>
+<tr><th>Phase</th><th>SWE Phase</th><th>Gate (from agentic-swe-master)</th><th>Status</th></tr>
+<tr><td><strong>P0 Setup</strong></td><td>Phase 0 + 1</td><td>Cognitive job written. Autonomy explicit. Failure modes listed. Architecture chosen. Boundary types stated. No cycles in dependency graph.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P1 CI</strong></td><td>Phase 18</td><td>No change deploys without passing eval gates. Rollback takes < 5 min.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P2 CLI</strong></td><td>Phase 3</td><td>Service modules defined. At least one state machine with explicit states. Every outbound call has timeout.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P3 Context Pack</strong></td><td>Phase 6 (minimal)</td><td>Memory tiers separated. Every response cites source. Freshness strategy defined.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P4 Write-back</strong></td><td>Phase 19 + 15</td><td>Every high-stakes action has approval gate. Audit trail covers every agent action. Explainability mechanism exists.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P5 Isolation</strong></td><td>Phase 7 + 11</td><td>Tool registry with schemas/permissions. No tool executes without capability grant. Sandboxing in place. Threat model exists. RBAC implemented.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P6 Stronger Checks</strong></td><td>Phase 9 + 12</td><td>Golden dataset exists. 3-level eval plan. Every outbound call has circuit breaker + timeout + retry with idempotency. Checkpointing allows resumption.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P7 Wiki</strong></td><td>Phase 6 (knowledge)</td><td>RAG pipeline uses hybrid retrieval. Every response cites source.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P8 Measure</strong></td><td>Phase 10 + 16</td><td>Every span captures latency + cost. Cost attribution wired per span. Alerts on error rate and cost drift.</td><td class="pending">PENDING</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>§3 — Milestones</h2>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<table>
+<tr><th>ID</th><th>Outcome</th><th>Demo Command</th><th>Freeze Boundary</th><th>Status</th></tr>
+<tr><td>P0</td><td>Repo init, V0 unpacked, traps pass</td><td><code>cd trap-project && python3 run_traps.py</code> → ALL TRAPS BEHAVE</td><td>trap-project/ + verifier/ frozen</td><td class="pending">IN PROGRESS</td></tr>
+<tr><td>P1</td><td>Traps run on every push</td><td>Break verify.py, git push → CI red</td><td>.github/workflows/ frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P2</td><td>CLI: start | verify | status</td><td><code>maverick verify</code> on toy project → VERIFIED + checkpoint</td><td>CLI subcommands frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P3</td><td>Context pack max 8KB, sourced</td><td><code>maverick context &lt;task&gt;</code> → pack with source IDs</td><td>Pack format frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P4</td><td>Write-back hook, proposals vs decisions</td><td>Fake "use Redis" → proposal, not decision</td><td>Proposal/decision separation frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P5</td><td>Hidden QA isolated, hooks in live Claude Code</td><td>Agent edits QA → blocked in real session</td><td>QA isolation boundary frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P6</td><td>Risk levels, mutation testing, 3-try repair cap</td><td><code>maverick verify --risk high</code> → surviving mutant caught</td><td>Risk level definitions frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P7</td><td>Wiki vault, Obsidian, citations</td><td>5 questions answered with [[page]] citations</td><td>Wiki schema frozen</td><td class="pending">PENDING</td></tr>
+<tr><td>P8</td><td>Log misses, DB only if > 20%</td><td><code>maverick misses</code> → miss log with rate</td><td>Measurement schema frozen</td><td class="pending">PENDING</td></tr>
+</table>
+
+</body>
+</html>
