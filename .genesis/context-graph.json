@@ -2,7 +2,7 @@
   "project": {
     "name": "Maverick Harness",
     "version": "0.0.0",
-    "description": "Control layer around coding agents \u2014 independent verification + automatic context",
+    "description": "Thin, opinionated trust boundary around coding agents — independent verification + context selection",
     "repo": "https://github.com/nithin-cherukumalli/Maverick-Harness.git",
     "genesis_version": "pinned-1.0.0",
     "installed_into": "~/.claude"
@@ -11,6 +11,62 @@
     "language": "python3",
     "dependencies": "stdlib-only",
     "constraint": "No external dependencies without user decision (INV-03)"
+  },
+  "architecture": {
+    "core_thesis": "The agent builds. The verifier judges. The agent never certifies its own work.",
+    "flow": "HUMAN -> GENESIS (what) -> MAVERICK CONTEXT ENGINE (what now?) -> CONTEXT PACK -> CODING AGENT -> CODE -> MAVERICK VERIFY -> VERDICT",
+    "ownership": {
+      "genesis": "Project state and workflow: specs, tasks, decisions, invariants, gates, checkpoints",
+      "llm_wiki": "Persistent knowledge: research, patterns, lessons, discoveries",
+      "codebase": "Implementation truth: actual code, symbols, structure",
+      "maverick_context_engine": "Context selection: minimum sufficient context for the current task",
+      "maverick_verifier": "Independent judgment: binary verdict on code changes",
+      "human": "Final authority: decisions, approvals, escalation"
+    },
+    "forbidden_overlaps": {
+      "maverick_must_not_become": "a second Genesis, a second Wiki, a coding agent, a project manager, a generic memory system, a database, a UI",
+      "context_engine_must_not_become": "a memory system, a vector database, an embedding store, an autonomous memory, a giant orchestration framework"
+    }
+  },
+  "authority_hierarchy": {
+    "description": "Information is treated according to its authority level. Derived context must never silently become authoritative.",
+    "levels": [
+      {
+        "level": "AUTHORITATIVE",
+        "sources": ["Human-approved decisions", "Genesis specifications", "Genesis invariants", "Approved architecture decisions"],
+        "rule": "Always included in context packs. Never overridden by lower levels."
+      },
+      {
+        "level": "OBSERVED",
+        "sources": ["Current code", "Verification evidence", "Test results", "Recorded failures"],
+        "rule": "Included when relevant. Can be overridden by AUTHORITATIVE."
+      },
+      {
+        "level": "KNOWLEDGE",
+        "sources": ["LLM Wiki / Obsidian", "Research", "Patterns", "Lessons"],
+        "rule": "Included when relevant. Must not contradict AUTHORITATIVE or OBSERVED without flagging."
+      },
+      {
+        "level": "DERIVED",
+        "sources": ["Agent summaries", "Inferences", "Recommendations", "Predictions"],
+        "rule": "Labeled as DERIVED. Must never silently become AUTHORITATIVE. Agent 'use Redis' = proposal until human DEC-xxx in Genesis."
+      }
+    ]
+  },
+  "context_engineering": {
+    "core_question": "What is the minimum sufficient context required for this agent to make a good decision on this task?",
+    "not": "How much context can we give the agent?",
+    "principle": "Minimum sufficient context with maximum relevance and provenance.",
+    "pack_sources": [
+      "Genesis project state (specs, tasks, decisions)",
+      "Genesis decisions and invariants",
+      "LLM Wiki / Obsidian knowledge",
+      "Relevant codebase structure and symbols",
+      "Relevant previous failures and verification evidence"
+    ],
+    "pack_process": "task -> requirements from Genesis -> decisions/invariants -> relevant Wiki knowledge -> relevant code -> relevant evidence -> rank -> compress -> CONTEXT PACK",
+    "pack_format": "Plain structured text: TASK / AUTHORITATIVE / CURRENT STATE / RELEVANT KNOWLEDGE / RELEVANT CODE / RECENT EVIDENCE / CONSTRAINTS / SOURCE",
+    "token_efficiency": "Prefer targeted retrieval over dumping entire files. A larger context window is not a substitute for better context selection."
   },
   "invariants": [
     {
@@ -55,21 +111,42 @@
     },
     {
       "id": "INV-09",
-      "rule": "Bounded repair \u2014 max 3 attempts, then BLOCKED \u2192 HUMAN.",
+      "rule": "Bounded repair — max 3 attempts, then BLOCKED → HUMAN.",
       "checked_by": "repair counter in verify.py"
     },
     {
       "id": "INV-10",
       "rule": "Every context pack line shows its source ID.",
       "checked_by": "context pack linter (P3)"
+    },
+    {
+      "id": "INV-11",
+      "rule": "Derived context must never silently become authoritative. Agent proposals are not decisions.",
+      "checked_by": "context pack authority labels + proposal log (P4)"
+    },
+    {
+      "id": "INV-12",
+      "rule": "Maverick does not duplicate Genesis or Wiki. It selects from them.",
+      "checked_by": "code review — no competing state or knowledge stores in Maverick"
+    },
+    {
+      "id": "INV-13",
+      "rule": "Context engineering answers 'what does the agent need NOW?', not 'how much can we give it?'.",
+      "checked_by": "context pack size (max 8KB) and relevance eval (P3)"
+    },
+    {
+      "id": "INV-14",
+      "rule": "Every abstraction must be earned by a demonstrated failure or measured need.",
+      "checked_by": "miss log (P8) + decision records in Genesis"
     }
   ],
   "file_map": {
     "planned_structure": {
       ".genesis/": "project state spine (read-only per INV-08)",
-      "verifier/verify.py": "independent verification \u2014 tests, mutation, evidence (exit 0=VERIFIED)",
-      "trap-project/run_traps.py": "8 trap scenarios \u2014 must print ALL TRAPS BEHAVE",
+      "verifier/verify.py": "independent verification — tests, mutation, evidence (exit 0=VERIFIED)",
+      "trap-project/run_traps.py": "8 trap scenarios — must print ALL TRAPS BEHAVE",
       "trap-project/": "adversarial test cases (frozen after P0)",
+      "context_engine/": "context selection: retrieves from Genesis + Wiki + codebase, produces context packs (P3)",
       "skills/independent-verification/": "agent skill for verification awareness",
       "hooks/": "end-of-session hooks (write-back, P4)",
       "install.sh": "installs into ~/.claude",
@@ -78,61 +155,32 @@
     "current_files": [
       ".claude/settings.local.json",
       ".deepeval/ (empty)",
-      "Maverick Harness Wiki/ (Obsidian vault, P7)"
+      "Maverick Harness Wiki/ (Obsidian vault — 32 pages, 221 wikilinks)"
     ]
   },
   "trap_scenarios": [
-    {
-      "id": "TRAP-001",
-      "name": "Wrong label",
-      "description": "Agent uses 'flaky' not 'IsFlaky'"
-    },
-    {
-      "id": "TRAP-002",
-      "name": "Weak test",
-      "description": "Only happy path tested"
-    },
-    {
-      "id": "TRAP-003",
-      "name": "Stale evidence",
-      "description": "Tests on wrong build"
-    },
-    {
-      "id": "TRAP-004",
-      "name": "Bad split",
-      "description": "Random vs grouped split"
-    },
-    {
-      "id": "TRAP-005",
-      "name": "Data leakage",
-      "description": "Feature computed from label"
-    },
-    {
-      "id": "TRAP-006",
-      "name": "Mutation survives",
-      "description": "Test suite too weak to detect"
-    },
-    {
-      "id": "TRAP-007",
-      "name": "UI regression",
-      "description": "Code works but UX broke"
-    },
-    {
-      "id": "TRAP-008",
-      "name": "API contract violation",
-      "description": "Response shape changed"
-    }
+    {"id": "TRAP-001", "name": "Wrong label", "description": "Agent uses 'flaky' not 'IsFlaky'"},
+    {"id": "TRAP-002", "name": "Weak test", "description": "Only happy path tested"},
+    {"id": "TRAP-003", "name": "Stale evidence", "description": "Tests on wrong build"},
+    {"id": "TRAP-004", "name": "Bad split", "description": "Random vs grouped split"},
+    {"id": "TRAP-005", "name": "Data leakage", "description": "Feature computed from label"},
+    {"id": "TRAP-006", "name": "Mutation survives", "description": "Test suite too weak to detect"},
+    {"id": "TRAP-007", "name": "UI regression", "description": "Code works but UX broke"},
+    {"id": "TRAP-008", "name": "API contract violation", "description": "Response shape changed"}
   ],
   "trust_boundaries": {
-    "coding_agent": "UNTRUSTED \u2014 cannot certify own work, cannot access hidden QA",
-    "verifier": "TRUSTED \u2014 independent, outside agent reach",
-    "hidden_qa": "OUTSIDE agent reach \u2014 not in agent-editable directories",
-    "genesis": "UNMODIFIED \u2014 CLI only, version pinned",
-    "human": "SOLE DECISION MAKER \u2014 agent ideas are proposals"
+    "coding_agent": "UNTRUSTED — cannot certify own work, cannot access hidden QA",
+    "verifier": "TRUSTED — independent, outside agent reach",
+    "hidden_qa": "OUTSIDE agent reach — not in agent-editable directories",
+    "genesis": "UNMODIFIED — CLI only, version pinned",
+    "llm_wiki": "KNOWLEDGE — not authoritative, must not override Genesis decisions",
+    "context_engine": "SELECTOR — retrieves from sources, does not own state or knowledge",
+    "human": "SOLE DECISION MAKER — agent ideas are proposals"
   },
   "dependencies": {
     "external": "none (stdlib only per INV-03)",
     "genesis": "pinned-1.0.0 (talked to via CLI only per INV-08)",
-    "agentic_swe_kit": "wiki at ~/.agentic-swe-kit/wiki/ (concept reference)"
+    "agentic_swe_kit": "wiki at ~/.agentic-swe-kit/wiki/ (concept reference)",
+    "obsidian_vault": "Maverick Harness Wiki/ at project root (knowledge layer)"
   }
 }

@@ -30,6 +30,8 @@ Who is trusted for what in the Maverick system.
 
 ## Related
 - [[agent-self-certification]]
+- [[authority-hierarchy]] — authority levels for information, not just entities
+- [[ownership-model]] — what each system owns vs doesn't
 - [[architectural-boundary]] — Maverick's boundaries are architectural boundaries — what happens when trust boundaries are violated
 - [[hidden-qa-isolation]] — the QA boundary in detail
 - [[genesis-cli-contract]] — the Genesis boundary

@@ -35,7 +35,8 @@ available.
 - Letting the agent make architectural decisions
 
 ## Related
-- [[miss-measurement]] — the decision gate for databases
+- [[miss-measurement]]
+- [[context-engineering-principles]] — evaluation before infrastructure is a context engineering principle — the decision gate for databases
 - [[stdlib-only-constraint]] — the decision gate for dependencies
 - [[proposal-vs-decision]] — the decision gate for agent ideas
 - [[context-packs-vs-rag]] — why RAG is premature for Maverick

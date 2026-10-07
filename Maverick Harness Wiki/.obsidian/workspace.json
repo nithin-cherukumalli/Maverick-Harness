@@ -186,6 +186,10 @@
   },
   "active": "d0ee60af63e5c818",
   "lastOpenFiles": [
+    "concepts/ownership-model.md",
+    "concepts/context-engine-selection.md",
+    "concepts/context-engineering-principles.md",
+    "concepts/authority-hierarchy.md",
     "concepts/human-in-the-loop.md",
     "concepts/repair-escalation.md",
     "concepts/verification-checks.md",
@@ -207,10 +211,6 @@
     "concepts/proposal-vs-decision.md",
     "concepts/risk-based-verification.md",
     "concepts/evidence-integrity.md",
-    "concepts/mutation-testing.md",
-    "concepts/trap-benchmark.md",
-    "concepts/trust-boundaries.md",
-    "concepts/context-packs.md",
-    "concepts/bounded-repair-loop.md"
+    "concepts/mutation-testing.md"
   ]
 }

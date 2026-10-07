@@ -10,7 +10,7 @@ tags: [schema]
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-10-07 | Total pages: 26
+> Last updated: 2026-10-07 | Total pages: 30
 
 ## Entities
 - [[maverick-harness]] — The control-plane product: supervises coding agents with independent verification
@@ -42,6 +42,11 @@ tags: [schema]
 - [[verification-checks]] — The four checks in verify.py V0: exist, pass, meaningful, mutation
 - [[repair-escalation]] — Three outcomes of repair: verified, repaired, blocked; escalation to human
 - [[human-in-the-loop]] — Supervised autonomy: decisions, escalation, approval are human touchpoints
+
+- [[authority-hierarchy]] — Information treated by authority level; derived never silently becomes authoritative
+- [[context-engineering-principles]] — Minimum sufficient context, not maximum; select don't store
+- [[context-engine-selection]] — The engine selects from existing sources, does not own them
+- [[ownership-model]] — Each system owns one thing; no overlaps, no duplication
 
 ## Comparisons
 - [[maverick-vs-genesis]] — Maverick verifies + contexts; Genesis tracks state; complementary not competing

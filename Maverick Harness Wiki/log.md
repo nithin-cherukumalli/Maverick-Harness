@@ -67,3 +67,12 @@ tags: [schema]
 - stdlib-only-constraint now links to deferred-decisions
 - agent-self-certification now links to human-in-the-loop
 - cognitive-job now links to human-in-the-loop
+
+
+## [2026-10-07] ingest | Architectural directive from human
+- Source: human directive (conversation)
+- Pages created: authority-hierarchy, context-engineering-principles, context-engine-selection, ownership-model
+- Invariants added: INV-11 (derived never authoritative), INV-12 (no duplication), INV-13 (what now, not how much), INV-14 (earn every abstraction)
+- Updated: context-graph.json with architecture, authority hierarchy, context engineering model, 14 invariants
+- Updated: 4 existing wiki pages with new cross-references
+- Key change: context engine is a decision layer, not a memory system

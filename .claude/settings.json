@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/hooks/end_of_session.py\" --from-claude-stdin",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

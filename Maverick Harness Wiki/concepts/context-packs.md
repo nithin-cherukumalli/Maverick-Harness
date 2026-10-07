@@ -36,6 +36,9 @@ This is measured empirically — not by architectural elegance.
 
 ## Related
 - [[context-packs-vs-rag]]
+- [[authority-hierarchy]] — every pack item has an authority level
+- [[context-engineering-principles]] — the principles guiding pack creation
+- [[context-engine-selection]] — what the engine selects vs owns
 - [[deferred-decisions]] — DB for packs is deferred until measured miss — why packs compound while RAG rediscovers
 - [[control-plane-architecture]] — where context packs fit in the flow
 - [[miss-measurement]] — if packs miss too often, add a DB (P8)

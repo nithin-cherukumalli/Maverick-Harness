@@ -59,6 +59,10 @@ Human -> Maverick -> {Genesis, Wiki, Memory} -> Context Pack -> Agent -> Verify 
 - Trust agent-generated tests without verification
 - Let agent endlessly repair (see [[bounded-repair-loop]])
 
+## Context Engineering
+The context engine is NOT a memory system. It is a **decision layer over existing sources**.
+It answers: "What is the minimum sufficient context for this task?" See [[context-engineering-principles]].
+
 ## Stack
 - Python 3 standard library only (see [[stdlib-only-constraint]])
 - One repo, installed into ~/.claude
