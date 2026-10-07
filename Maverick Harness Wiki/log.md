@@ -43,3 +43,27 @@ tags: [schema]
 ## [2026-10-07] create | Trap benchmark results
 - All 8 traps pass (ALL TRAPS BEHAVE)
 - Updated trap-benchmark with V0 results
+
+
+## [2026-10-07] ingest | V0 source code
+- Source: verifier/verify.py + trap-project/run_traps.py
+- Captured to: raw/articles/verify-py-v0.md, raw/articles/run-traps-v0.md
+- Pages created: verification-checks, repair-escalation, human-in-the-loop
+- sha256 of verify.py: 4870394700490349129
+
+## [2026-10-07] ingest | agentic-swe-kit concept pages
+- Source: ~/.agentic-swe-kit/wiki/clean-architecture/
+- Pages created: architectural-boundary, testing-api-design, deferred-decisions
+- Cross-references added to existing pages (trust-boundaries, independent-verification, etc.)
+- Key ingested concepts: Boundary-Lines, Design-for-Testability, Defer-Decisions-Framework
+
+## [2026-10-07] update | Cross-reference enrichment
+- Added backlinks from existing pages to new concept pages
+- trust-boundaries now links to architectural-boundary
+- independent-verification now links to testing-api-design, verification-checks
+- bounded-repair-loop now links to repair-escalation
+- proposal-vs-decision now links to deferred-decisions, human-in-the-loop
+- miss-measurement now links to deferred-decisions
+- stdlib-only-constraint now links to deferred-decisions
+- agent-self-certification now links to human-in-the-loop
+- cognitive-job now links to human-in-the-loop

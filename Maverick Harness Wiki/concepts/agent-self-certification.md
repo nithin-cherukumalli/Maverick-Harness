@@ -40,7 +40,8 @@ role from the agent:
   (see [[stdlib-only-constraint]])
 
 ## Related
-- [[independent-verification]] — the fix
+- [[independent-verification]]
+- [[human-in-the-loop]] — full autonomy without supervision is extended self-certification — the fix
 - [[trust-boundaries]] — agent is UNTRUSTED
 - [[coding-agent]] — the entity that must not self-certify
 - [[trap-benchmark]] — tests that the verifier catches self-certified wrong code

@@ -35,7 +35,8 @@ Sources include: `genesis:PLAN.md`, `genesis:context-graph.json#INV-01`,
 This is measured empirically — not by architectural elegance.
 
 ## Related
-- [[context-packs-vs-rag]] — why packs compound while RAG rediscovers
+- [[context-packs-vs-rag]]
+- [[deferred-decisions]] — DB for packs is deferred until measured miss — why packs compound while RAG rediscovers
 - [[control-plane-architecture]] — where context packs fit in the flow
 - [[miss-measurement]] — if packs miss too often, add a DB (P8)
 - [[genesis-system]] — source of requirements, decisions, invariants

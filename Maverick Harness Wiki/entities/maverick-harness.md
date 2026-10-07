@@ -65,7 +65,9 @@ Human -> Maverick -> {Genesis, Wiki, Memory} -> Context Pack -> Agent -> Verify 
 - No external dependencies without user decision
 
 ## Related
-- [[independent-verification]] — the core mechanism
+- [[independent-verification]]
+- [[verification-checks]] — the four checks in V0
+- [[human-in-the-loop]] — supervised autonomy, not full automation — the core mechanism
 - [[trap-benchmark]] — 8 scenarios testing verifier effectiveness
 - [[evidence-integrity]] — provenance tracking for each verification
 - [[cognitive-job]] — what thinking the system performs

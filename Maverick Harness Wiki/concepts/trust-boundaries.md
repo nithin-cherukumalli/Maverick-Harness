@@ -29,7 +29,8 @@ Who is trusted for what in the Maverick system.
 - INV-08: Genesis unmodified (CLI only, version pinned)
 
 ## Related
-- [[agent-self-certification]] — what happens when trust boundaries are violated
+- [[agent-self-certification]]
+- [[architectural-boundary]] — Maverick's boundaries are architectural boundaries — what happens when trust boundaries are violated
 - [[hidden-qa-isolation]] — the QA boundary in detail
 - [[genesis-cli-contract]] — the Genesis boundary
 - [[proposal-vs-decision]] — the decision boundary

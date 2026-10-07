@@ -186,6 +186,14 @@
   },
   "active": "d0ee60af63e5c818",
   "lastOpenFiles": [
+    "concepts/human-in-the-loop.md",
+    "concepts/repair-escalation.md",
+    "concepts/verification-checks.md",
+    "concepts/deferred-decisions.md",
+    "concepts/testing-api-design.md",
+    "concepts/architectural-boundary.md",
+    "raw/articles/run-traps-v0.md",
+    "raw/articles/verify-py-v0.md",
     "comparisons/traditional-testing-vs-independent-verification.md",
     "comparisons/context-packs-vs-rag.md",
     "comparisons/maverick-vs-genesis.md",
@@ -203,12 +211,6 @@
     "concepts/trap-benchmark.md",
     "concepts/trust-boundaries.md",
     "concepts/context-packs.md",
-    "concepts/bounded-repair-loop.md",
-    "concepts/independent-verification.md",
-    "entities/claude-code.md",
-    "entities/coding-agent.md",
-    "entities/genesis-system.md",
-    "entities/maverick-harness.md",
-    "Welcome.md"
+    "concepts/bounded-repair-loop.md"
   ]
 }

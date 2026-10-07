@@ -36,7 +36,9 @@ Without this boundary, agents can:
 - Accumulate technical debt through "helpful" suggestions
 
 ## Related
-- [[trust-boundaries]] — human is SOLE DECISION MAKER
+- [[trust-boundaries]]
+- [[deferred-decisions]] — decisions are deferred until human approval
+- [[human-in-the-loop]] — the human touchpoint for decisions — human is SOLE DECISION MAKER
 - [[coding-agent]] — the entity whose ideas are proposals
 - [[stdlib-only-constraint]] — dependencies require a decision
 - [[miss-measurement]] — adding a DB requires a decision backed by measured misses

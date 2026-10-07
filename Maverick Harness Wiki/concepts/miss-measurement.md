@@ -36,7 +36,8 @@ Per INV-07: any number in a doc must come from a command.
 The miss rate is computed by `maverick misses`, not estimated.
 
 ## Related
-- [[context-packs]] — where misses are most likely to occur
+- [[context-packs]]
+- [[deferred-decisions]] — the decision to add a DB is deferred — where misses are most likely to occur
 - [[stdlib-only-constraint]] — no DB without measured justification
 - [[proposal-vs-decision]] — adding a DB is a decision, not a proposal
 - [[independent-verification]] — verification misses are logged

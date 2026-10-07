@@ -35,7 +35,8 @@ The verifier tracks repair attempts. In V0, this is logged in the evidence
 bundle. In P6, the 3-try cap is enforced programmatically.
 
 ## Related
-- [[independent-verification]] — what triggers the repair loop
+- [[independent-verification]]
+- [[repair-escalation]] — the full escalation protocol — what triggers the repair loop
 - [[trust-boundaries]] — human is the escalation target
 - [[agent-self-certification]] — unbounded repair is a form of self-certification
 - [[risk-based-verification]] — high-risk changes may have stricter caps

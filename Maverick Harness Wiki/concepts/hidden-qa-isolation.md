@@ -37,7 +37,8 @@ after P0. In P5, they (or equivalent hidden QA) move to a location the agent
 cannot access.
 
 ## Related
-- [[trust-boundaries]] — hidden QA is OUTSIDE AGENT REACH
+- [[trust-boundaries]]
+- [[testing-api-design]] — hidden QA is a testing API with superpowers — hidden QA is OUTSIDE AGENT REACH
 - [[independent-verification]] — hidden QA is part of the verification arsenal
 - [[agent-self-certification]] — hidden QA prevents the agent from gaming tests
 - [[claude-code]] — P5 tests in a live Claude Code session

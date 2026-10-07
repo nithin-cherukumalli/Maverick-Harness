@@ -37,7 +37,8 @@ Uses `tokenize` and `ast` from the standard library. No `mutmut` or other
 external mutation testing frameworks (see [[stdlib-only-constraint]]).
 
 ## Related
-- [[independent-verification]] — mutation testing is check 4
+- [[independent-verification]]
+- [[verification-checks]] — mutation testing is check 4 — mutation testing is check 4
 - [[trap-benchmark]] — 3 of 8 traps specifically test mutation detection
 - [[risk-based-verification]] — P6 adds risk-based mutation testing
 - [[traditional-testing-vs-independent-verification]] — why mutation matters

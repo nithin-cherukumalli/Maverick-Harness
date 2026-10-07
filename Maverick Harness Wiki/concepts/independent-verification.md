@@ -37,7 +37,9 @@ removes the judge role from the agent.
 4. Mutation testing (flip first comparison operator, check if tests catch it)
 
 ## Related
-- [[agent-self-certification]] — the anti-pattern this prevents
+- [[agent-self-certification]]
+- [[testing-api-design]] — the verifier IS a testing API
+- [[verification-checks]] — the four checks in detail — the anti-pattern this prevents
 - [[mutation-testing]] — check 4 in detail
 - [[evidence-integrity]] — provenance for each verification
 - [[trap-benchmark]] — 8 scenarios testing the verifier itself

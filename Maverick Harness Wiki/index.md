@@ -10,7 +10,7 @@ tags: [schema]
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-10-07 | Total pages: 20
+> Last updated: 2026-10-07 | Total pages: 26
 
 ## Entities
 - [[maverick-harness]] — The control-plane product: supervises coding agents with independent verification
@@ -35,6 +35,13 @@ tags: [schema]
 - [[stdlib-only-constraint]] — No external dependencies without a user decision
 - [[miss-measurement]] — Log every miss; add a DB only if misses stay above 20%
 - [[control-plane-architecture]] — Human -> Maverick -> {Genesis, Wiki, Memory} -> Context Pack -> Agent -> Verify
+
+- [[architectural-boundary]] — Structural divide: abstract (stable) vs concrete (volatile), dependencies point inward
+- [[testing-api-design]] — Tests as first-class components; dedicated API prevents fragile tests
+- [[deferred-decisions]] — Postpone DB/framework/config decisions until maximum information available
+- [[verification-checks]] — The four checks in verify.py V0: exist, pass, meaningful, mutation
+- [[repair-escalation]] — Three outcomes of repair: verified, repaired, blocked; escalation to human
+- [[human-in-the-loop]] — Supervised autonomy: decisions, escalation, approval are human touchpoints
 
 ## Comparisons
 - [[maverick-vs-genesis]] — Maverick verifies + contexts; Genesis tracks state; complementary not competing

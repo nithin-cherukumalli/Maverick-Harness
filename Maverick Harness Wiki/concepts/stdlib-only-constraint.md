@@ -31,7 +31,8 @@ Only when the user makes a **decision** (not a [[proposal-vs-decision|proposal]]
 - The user explicitly approves the dependency
 
 ## Related
-- [[proposal-vs-decision]] — dependencies require a decision
+- [[proposal-vs-decision]]
+- [[deferred-decisions]] — every dependency is a deferred decision — dependencies require a decision
 - [[miss-measurement]] — DB requires measured misses > 20%
 - [[independent-verification]] — verifier is stdlib-only
 - [[maverick-harness]] — the whole harness is stdlib-only

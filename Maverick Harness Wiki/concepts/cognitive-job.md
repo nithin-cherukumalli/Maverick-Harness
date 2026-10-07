@@ -36,7 +36,8 @@ evidence checking — not in probabilistic reasoning.
 6. Verifier passes wrong code -> caught by [[trap-benchmark]]
 
 ## Related
-- [[maverick-harness]] — the system that performs this job
+- [[maverick-harness]]
+- [[human-in-the-loop]] — autonomy boundaries require human touchpoints — the system that performs this job
 - [[independent-verification]] — the mechanism
 - [[trust-boundaries]] — autonomy boundaries
 - [[control-plane-architecture]] — where the cognitive job fits

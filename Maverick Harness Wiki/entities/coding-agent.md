@@ -44,7 +44,8 @@ Per [[trust-boundaries]]:
 - Repair endlessly (see [[bounded-repair-loop]])
 
 ## Related
-- [[claude-code]] — the primary coding agent Maverick supervises
+- [[claude-code]]
+- [[human-in-the-loop]] — the agent's autonomy is bounded — the primary coding agent Maverick supervises
 - [[agent-self-certification]] — the anti-pattern
 - [[trust-boundaries]] — full trust classification
 - [[bounded-repair-loop]] — repair limits
