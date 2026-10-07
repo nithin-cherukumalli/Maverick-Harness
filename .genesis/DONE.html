@@ -77,7 +77,7 @@
 
 <table>
 <tr><th>Phase</th><th>SWE Phase</th><th>Gate (from agentic-swe-master)</th><th>Status</th></tr>
-<tr><td><strong>P0 Setup</strong></td><td>Phase 0 + 1</td><td>Cognitive job written. Autonomy explicit. Failure modes listed. Architecture chosen. Boundary types stated. No cycles in dependency graph.</td><td class="pending">PENDING</td></tr>
+<tr><td><strong>P0 Setup</strong></td><td>Phase 0 + 1</td><td>Cognitive job written. Autonomy explicit. Failure modes listed. Architecture chosen. Boundary types stated. No cycles in dependency graph.</td><td class="pass">PASS</td></tr>
 <tr><td><strong>P1 CI</strong></td><td>Phase 18</td><td>No change deploys without passing eval gates. Rollback takes < 5 min.</td><td class="pending">PENDING</td></tr>
 <tr><td><strong>P2 CLI</strong></td><td>Phase 3</td><td>Service modules defined. At least one state machine with explicit states. Every outbound call has timeout.</td><td class="pending">PENDING</td></tr>
 <tr><td><strong>P3 Context Pack</strong></td><td>Phase 6 (minimal)</td><td>Memory tiers separated. Every response cites source. Freshness strategy defined.</td><td class="pending">PENDING</td></tr>
@@ -94,7 +94,7 @@
 
 <table>
 <tr><th>ID</th><th>Outcome</th><th>Demo Command</th><th>Freeze Boundary</th><th>Status</th></tr>
-<tr><td>P0</td><td>Repo init, V0 unpacked, traps pass</td><td><code>cd trap-project && python3 run_traps.py</code> → ALL TRAPS BEHAVE</td><td>trap-project/ + verifier/ frozen</td><td class="pending">IN PROGRESS</td></tr>
+<tr><td>P0</td><td>Repo init, V0 unpacked, traps pass</td><td><code>cd trap-project && python3 run_traps.py</code> → ALL TRAPS BEHAVE</td><td>trap-project/ + verifier/ frozen</td><td class="pass">VERIFIED</td></tr>
 <tr><td>P1</td><td>Traps run on every push</td><td>Break verify.py, git push → CI red</td><td>.github/workflows/ frozen</td><td class="pending">PENDING</td></tr>
 <tr><td>P2</td><td>CLI: start | verify | status</td><td><code>maverick verify</code> on toy project → VERIFIED + checkpoint</td><td>CLI subcommands frozen</td><td class="pending">PENDING</td></tr>
 <tr><td>P3</td><td>Context pack max 8KB, sourced</td><td><code>maverick context &lt;task&gt;</code> → pack with source IDs</td><td>Pack format frozen</td><td class="pending">PENDING</td></tr>
